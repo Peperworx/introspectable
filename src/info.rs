@@ -3,6 +3,7 @@ use std::collections::HashMap;
 /// This enum identifies type information for a given type
 /// # Warning
 /// This is not implemented for pointer types and slices, which will just resolve to their pointed to data.
+#[derive(Debug, Clone)]
 pub enum TypeInfo {
     /// Represents a scalar type
     Scalar(ScalarType),
@@ -16,15 +17,17 @@ pub enum TypeInfo {
 }
 
 /// This enum identifies each of the 14 primitive scalar types
+#[derive(Debug, Clone)]
 pub enum ScalarType {
-    Bool(bool),
-    I8(i8), I16(i16), I32(i32), I64(i64), I128(i128),
-    U8(u8), U16(u16), U32(u32), U64(u64), U128(u128),
-    F32(f32), F64(f64),
-    Char(char)
+    Bool,
+    I8, I16, I32, I64, I128,
+    U8, U16, U32, U64, U128,
+    F32, F64,
+    Char
 }
 
 /// This enum identifies different compound types
+#[derive(Debug, Clone)]
 pub enum CompoundType {
     /// This variant represents a structure and its fields
     Struct {
@@ -49,22 +52,24 @@ pub enum CompoundType {
 }
 
 /// Represents an Enum variant
+#[derive(Debug, Clone)]
 pub enum EnumVariant {
     /// Represents a unit-like enum
-    UnitEnum,
+    UnitVariant,
     /// Represents a tuple-like enum
-    TupleEnum {
+    UnnamedVariant {
         /// The fields of the enum
         fields: Vec<TypeInfo>
     },
-    /// Represents a struct-like enum
-    StructEnum {
+    /// Represents a named variant
+    NamedVariant {
         /// The fields of the enum. Key is the name of the field, value is the type info.
         fields: HashMap<&'static str, TypeInfo>
     }
 }
 
 /// This enum identifies different pointer types
+#[derive(Debug, Clone)]
 pub enum PointerType {
     /// Represents a reference
     Reference(Box<TypeInfo>),
@@ -76,6 +81,7 @@ pub enum PointerType {
     MutPointer(Box<TypeInfo>)
 }
 
+#[derive(Debug, Clone)]
 pub enum SpecializedType {
 
 }
