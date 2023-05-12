@@ -9,6 +9,8 @@ pub enum TypeInfo {
     Scalar(ScalarType),
     /// Represents a compound type
     Compound(CompoundType),
+    /// Represents a pointer type
+    Pointer(PointerType),
     /// Represents a special type that is handled differently than others,
     /// including standard library types such as Vec, Box, HasmMap, etc.
     /// Only included when the specialized_std trait is enabled
@@ -17,13 +19,30 @@ pub enum TypeInfo {
 }
 
 /// This enum identifies each of the 14 primitive scalar types
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Copy)]
 pub enum ScalarType {
     Bool,
     I8, I16, I32, I64, I128,
     U8, U16, U32, U64, U128,
     F32, F64,
     Char
+}
+
+impl ScalarType {
+    /// Returns true if the type is an integer
+    pub fn is_integer(self) -> bool {
+        matches!(self, ScalarType::I8 | ScalarType::I16 | ScalarType::I32 | ScalarType::I64 | ScalarType::I128 | ScalarType::U8 | ScalarType::U16 | ScalarType::U32 | ScalarType::U64 | ScalarType::U128)
+    }
+
+    /// Returns true if the type is a floating point number
+    pub fn is_float(self) -> bool {
+        matches!(self, ScalarType::F32 | ScalarType::F64)
+    }
+
+    /// Returns true if the type is signed
+    pub fn is_signed(self) -> bool {
+        matches!(self, ScalarType::I8 | ScalarType::I16 | ScalarType::I32 | ScalarType::I64 | ScalarType::I128 | ScalarType::F32 | ScalarType::F64)
+    }
 }
 
 /// This enum identifies different compound types
