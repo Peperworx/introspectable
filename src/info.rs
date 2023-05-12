@@ -67,7 +67,13 @@ pub enum CompoundType {
         /// The enum's variants. Key is the name of the variant, value is the EnumVariant type.
         variants: HashMap<&'static str, EnumVariant>
     },
-
+    /// This variant represents an array
+    Array {
+        /// The type of the array
+        type_info: Box<TypeInfo>,
+        /// The length of the array
+        length: usize,
+    }
 }
 
 /// Represents an Enum variant
