@@ -3,7 +3,7 @@ use std::collections::HashMap;
 /// This enum identifies type information for a given type
 /// # Warning
 /// This is not implemented for pointer types and slices, which will just resolve to their pointed to data.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Eq, PartialEq)]
 pub enum TypeInfo {
     /// Represents a never type
     Never,
@@ -27,7 +27,7 @@ pub enum TypeInfo {
 }
 
 /// This enum identifies each of the 14 primitive scalar types
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum ScalarType {
     Bool,
     I8, I16, I32, I64, I128,
@@ -54,7 +54,7 @@ impl ScalarType {
 }
 
 /// This enum identifies different compound types
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Eq, PartialEq)]
 pub enum CompoundType {
     /// This variant represents a structure and its fields
     Struct {
@@ -90,7 +90,7 @@ pub enum CompoundType {
 }
 
 /// Represents an Enum variant
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Eq, PartialEq)]
 pub enum EnumVariant {
     /// Represents a unit-like enum
     UnitVariant,
@@ -107,7 +107,7 @@ pub enum EnumVariant {
 }
 
 /// This enum identifies different pointer types
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Eq, PartialEq)]
 pub enum PointerType {
     /// Represents a reference
     Reference{
@@ -121,7 +121,7 @@ pub enum PointerType {
     MutPointer(Box<TypeInfo>)
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Eq, PartialEq, PartialOrd, Ord, Hash)]
 pub enum SpecializedType {
 
 }
