@@ -5,12 +5,20 @@ use std::collections::HashMap;
 /// This is not implemented for pointer types and slices, which will just resolve to their pointed to data.
 #[derive(Debug, Clone)]
 pub enum TypeInfo {
+    /// Represents a never type
+    Never,
+    /// Represents the unit type
+    Unit,
     /// Represents a scalar type
     Scalar(ScalarType),
     /// Represents a compound type
     Compound(CompoundType),
     /// Represents a pointer type
     Pointer(PointerType),
+    /// Represents an impl type
+    Impl(Vec<&'static str>),
+    /// Represents a dyn type
+    Dyn(Vec<&'static str>),
     /// Represents a special type that is handled differently than others,
     /// including standard library types such as Vec, Box, HasmMap, etc.
     /// Only included when the specialized_std trait is enabled
@@ -73,6 +81,11 @@ pub enum CompoundType {
         type_info: Box<TypeInfo>,
         /// The length of the array
         length: usize,
+    },
+    /// This variant represents a slice
+    Slice {
+        /// The type of the slice
+        type_info: Box<TypeInfo>,
     }
 }
 
@@ -97,9 +110,11 @@ pub enum EnumVariant {
 #[derive(Debug, Clone)]
 pub enum PointerType {
     /// Represents a reference
-    Reference(Box<TypeInfo>),
-    /// Represents a mutable reference
-    MutReference(Box<TypeInfo>),
+    Reference{
+        lifetime: &'static str,
+        type_info: Box<TypeInfo>,
+        mutable: bool,
+    },
     /// Represents a const pointer
     ConstPointer(Box<TypeInfo>),
     /// References a mutable pointer

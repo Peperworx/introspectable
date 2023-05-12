@@ -48,21 +48,6 @@ impl_introspectable!(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14
 
 // Implementation of Introspectable for pointer types
 
-impl<T: Introspectable> Introspectable for &T {
-    fn introspect() -> info::TypeInfo {
-        info::TypeInfo::Pointer(
-            info::PointerType::Reference(Box::new(T::introspect()))
-        )
-    }
-}
-
-impl<T: Introspectable> Introspectable for &mut T {
-    fn introspect() -> info::TypeInfo {
-        info::TypeInfo::Pointer(
-            info::PointerType::MutReference(Box::new(T::introspect()))
-        )
-    }
-}
 
 impl<T: Introspectable> Introspectable for *const T {
     fn introspect() -> info::TypeInfo {
