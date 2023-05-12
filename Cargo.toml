@@ -2,11 +2,15 @@
 name = "introspectable"
 version = "0.1.0"
 edition = "2021"
-
+license = "MIT OR Apache-2.0"
+keywords = ["introspection", "introspectable"]
+description = "Basic introspection via the Introspectable trait."
+readme = "README.md"
+homepage = "https://github.com/peperworx/introspectable"
+repository = "https://github.com/peperworx/introspectable"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[dependencies]
-introspectable_derive = { path = "../introspectable_derive" }
+
 
 [features]
 default = ["specialized_std"]
