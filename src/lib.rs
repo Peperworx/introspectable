@@ -9,6 +9,11 @@ pub mod info;
 pub trait Introspectable {
     /// Returns type info for the implemented type.
     fn introspect() -> info::TypeInfo;
+
+    /// Returns type info for an instance of a type
+    fn introspect_instance(&self) -> info::TypeInfo {
+        Self::introspect()
+    }
 }
 
 // Implementation of Introspectable for tuple sizes up to 16
