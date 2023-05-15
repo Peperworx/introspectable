@@ -121,7 +121,40 @@ pub enum PointerType {
     MutPointer(Box<TypeInfo>)
 }
 
-#[derive(Debug, Clone, Eq, PartialEq, PartialOrd, Ord, Hash)]
+#[derive(Debug, Clone, Eq, PartialEq)]
 pub enum SpecializedType {
-
+    /// Represents a standard library Vec
+    Vec {
+        type_info: Box<TypeInfo>
+    },
+    /// Represents a standard library VecDeque
+    VecDeque {
+        type_info: Box<TypeInfo>,
+    },
+    /// Represents a standard library LinkedList
+    LinkedList {
+        type_info: Box<TypeInfo>,
+    },
+    /// Represents a standard library HashMap
+    HashMap {
+        key_type: Box<TypeInfo>,
+        value_type: Box<TypeInfo>,
+    },
+    /// Represents a standard library BTreeMap
+    BTreeMap {
+        key_type: Box<TypeInfo>,
+        value_type: Box<TypeInfo>,
+    },
+    /// Represents a standard library HashSet
+    HashSet {
+        type_info: Box<TypeInfo>,
+    },
+    /// Represents a standard library BTreeSet
+    BTreeSet {
+        type_info: Box<TypeInfo>,
+    },
+    /// Represents a standard library BinaryHeap
+    BinaryHeap {
+        type_info: Box<TypeInfo>,
+    }
 }
