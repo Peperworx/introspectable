@@ -78,3 +78,11 @@ impl<T: Introspectable> Introspectable for BTreeSet<T> {
         )
     }
 }
+
+impl Introspectable for String {
+    fn introspect() -> TypeInfo {
+        TypeInfo::Specialized(
+            SpecializedType::String
+        )
+    }
+}

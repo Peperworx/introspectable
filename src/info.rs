@@ -156,5 +156,7 @@ pub enum SpecializedType {
     /// Represents a standard library BinaryHeap
     BinaryHeap {
         type_info: Box<TypeInfo>,
-    }
+    },
+    /// Represents a String
+    String
 }
