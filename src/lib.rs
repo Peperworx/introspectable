@@ -4,6 +4,10 @@ use info::{ScalarType, TypeInfo};
 /// This module provides type info structures and enums
 pub mod info;
 
+/// This module implements Introspectable for several core standard library collections
+#[cfg(features="specialized_std")]
+pub mod std_impl;
+
 
 /// The main trait of this library which allows introspection on both structs and enums
 pub trait Introspectable {
