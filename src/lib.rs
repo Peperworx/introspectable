@@ -5,7 +5,7 @@ use info::{ScalarType, TypeInfo};
 pub mod info;
 
 /// This module implements Introspectable for several core standard library collections
-#[cfg(features="specialized_std")]
+#[cfg(feature="specialized_std")]
 pub mod std_impl;
 
 
