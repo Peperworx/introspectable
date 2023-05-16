@@ -1,6 +1,6 @@
 [package]
 name = "introspectable"
-version = "0.4.0"
+version = "0.5.0"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 keywords = ["introspection", "introspectable"]
@@ -10,10 +10,14 @@ homepage = "https://github.com/peperworx/introspectable"
 repository = "https://github.com/peperworx/introspectable"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-
+[dependencies]
+introspectable_derive = { version = "0.1.0", optional = true }
 
 [features]
-default = ["specialized_std"]
+default = ["specialized_std", "derive"]
 
 # This feature enables the use of specialized TypeInfo variants for specific standard library types such as Vec, Box, and more.
 specialized_std = []
+
+# This feature enables the pub use of introspectable_derive
+derive = ["introspectable_derive"]
