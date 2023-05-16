@@ -1,5 +1,8 @@
 use info::{ScalarType, TypeInfo};
 
+/// Export introspectable_derive
+#[cfg(feature="derive")]
+pub use introspectable_derive::Introspectable;
 
 /// This module provides type info structures and enums
 pub mod info;
